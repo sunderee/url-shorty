@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:urlshorty/app.router.dart';
+import 'package:urlshorty/data/models/gotiny_response.model.dart';
 import 'package:urlshorty/ui/themes/color.theme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         minimum: const EdgeInsets.all(16.0),
         child: Center(
-          child: _InitialContainer(
+          child: _InitialContainerWidget(
             inputController: _inputController,
           ),
         ),
@@ -47,10 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _InitialContainer extends StatelessWidget {
+class _InitialContainerWidget extends StatelessWidget {
   final TextEditingController inputController;
 
-  const _InitialContainer({Key? key, required this.inputController})
+  const _InitialContainerWidget({Key? key, required this.inputController})
       : super(key: key);
 
   @override
@@ -110,6 +112,101 @@ class _InitialContainer extends StatelessWidget {
                 inputController.text = barcode.code ?? '';
               }
             },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _LoadingContainerWidget extends StatelessWidget {
+  const _LoadingContainerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: CircularProgressIndicator(
+        color: ColorTheme.colorProduct,
+      ),
+    );
+  }
+}
+
+class _ErrorContainerWidget extends StatelessWidget {
+  final String errorMessage;
+
+  const _ErrorContainerWidget({
+    Key? key,
+    required this.errorMessage,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+    );
+  }
+}
+
+class _DataContainerWidget extends StatefulWidget {
+  final GoTinyResponseModel data;
+
+  const _DataContainerWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+
+  @override
+  State<_DataContainerWidget> createState() => _DataContainerWidgetState();
+}
+
+class _DataContainerWidgetState extends State<_DataContainerWidget> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = widget.data.shortURL;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextField(
+          controller: _controller,
+          readOnly: true,
+          decoration: const InputDecoration(
+            hintText: 'Paste your URL...',
+            filled: true,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: ColorTheme.colorProduct,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: MaterialButton(
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            color: ColorTheme.colorProduct,
+            child: const Text(
+              'COPY TO CLIPBOARD',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () => Clipboard.setData(
+              ClipboardData(text: widget.data.shortURL),
+            ),
           ),
         ),
       ],
