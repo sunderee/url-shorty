@@ -5,7 +5,7 @@ import 'package:urlshorty/utils/extensions/http_headers.ext.dart';
 import 'package:urlshorty/utils/types/json.type.dart';
 
 class ApiProvider {
-  final HttpClient client = HttpClient();
+  final HttpClient _client = HttpClient();
   final String _baseURL;
 
   ApiProvider(String baseURL) : _baseURL = baseURL;
@@ -16,7 +16,7 @@ class ApiProvider {
     Map<String, String> headers,
   ) async {
     final url = Uri.https(_baseURL, endpoint);
-    final request = await client.postUrl(url)
+    final request = await _client.postUrl(url)
       ..headers.addAll(headers)
       ..write(json.encode(body));
 
