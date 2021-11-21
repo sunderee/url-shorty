@@ -8,7 +8,16 @@ class AppTheme {
     scaffoldBackgroundColor: ColorTheme.colorBackgroundLight,
     appBarTheme: const AppBarTheme(
       elevation: 0.0,
+      centerTitle: true,
       color: ColorTheme.colorBackgroundLight,
+      titleTextStyle: TextStyle(
+        color: Colors.black87,
+        fontSize: 20.0,
+        fontWeight: FontWeight.w500,
+      ),
+      actionsIconTheme: IconThemeData(
+        color: Colors.black87,
+      ),
     ),
   );
 
