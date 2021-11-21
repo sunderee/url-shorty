@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:urlshorty/app.router.dart';
 import 'package:urlshorty/ui/themes/color.theme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -101,8 +103,12 @@ class _InitialContainer extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            onPressed: () {
-              // TODO: open QR code scanner
+            onPressed: () async {
+              dynamic result = await AppRouter.navigateToQRViewScreen(context);
+              final barcode = result as Barcode?;
+              if (barcode != null) {
+                inputController.text = barcode.code ?? '';
+              }
             },
           ),
         ),
