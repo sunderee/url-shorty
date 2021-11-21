@@ -8,6 +8,8 @@ class CacheProvider<T> {
   const CacheProvider(this.boxInstance);
 
   Future<int> insert(T object) async => boxInstance.add(object);
+
   Iterable<T> readAll() => boxInstance.values;
+
   Future<void> deleteAt(int index) async => await boxInstance.deleteAt(index);
 }

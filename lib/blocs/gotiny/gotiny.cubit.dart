@@ -22,10 +22,8 @@ class GoTinyCubit extends Cubit<GoTinyState> {
       await _historyRepository.storeLinkToHistory(result);
       emit(GoTinyState.successful(result));
     } on ApiException catch (e) {
-      print(e.toString());
       emit(GoTinyState.failed(e.toString()));
-    } catch (e) {
-      print(e);
+    } catch (_) {
       emit(GoTinyState.failed('Unknown exception'));
     }
   }

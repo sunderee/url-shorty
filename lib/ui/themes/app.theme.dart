@@ -15,6 +15,9 @@ class AppTheme {
         fontSize: 20.0,
         fontWeight: FontWeight.w500,
       ),
+      iconTheme: IconThemeData(
+        color: Colors.black87,
+      ),
       actionsIconTheme: IconThemeData(
         color: Colors.black87,
       ),
