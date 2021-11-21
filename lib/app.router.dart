@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:urlshorty/ui/screens/history.screen.dart';
 import 'package:urlshorty/ui/screens/home.screen.dart';
 import 'package:urlshorty/ui/screens/qr_view.screen.dart';
@@ -12,8 +13,8 @@ class AppRouter {
     HistoryScreen.routeName: (BuildContext context) => const HistoryScreen(),
   };
 
-  Future<void> navigateToQRViewScreen(BuildContext context) async {
-    final result = await Navigator.pushNamed(context, QRViewScreen.routeName);
+  static Future<dynamic> navigateToQRViewScreen(BuildContext context) async {
+    return Navigator.of(context).pushNamed(QRViewScreen.routeName);
   }
 
   const AppRouter._();

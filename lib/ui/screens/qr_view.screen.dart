@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRViewScreen extends StatefulWidget {
@@ -36,11 +37,14 @@ class _QRViewScreenState extends State<QRViewScreen> {
   Widget build(BuildContext context) {
     return QRView(
       key: _qrViewKey,
-      onQRViewCreated: (QRViewController controller) {
+      formatsAllowed: const [BarcodeFormat.qrcode],
+      onQRViewCreated: (QRViewController controller) async {
         _qrViewController = controller;
-        _qrViewController.scannedDataStream.listen((Barcode barcode) {
-          Navigator.pop<Barcode>(context, barcode);
-        });
+        final result = await controller.scannedDataStream.first;
+        Future.delayed(
+          const Duration(milliseconds: 25),
+          () => Navigator.of(context).pop(result),
+        );
       },
     );
   }
