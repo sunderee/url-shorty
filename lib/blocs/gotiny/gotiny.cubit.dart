@@ -17,8 +17,10 @@ class GoTinyCubit extends Cubit<GoTinyState> {
       final result = await _repository.shortenURL(inputURL);
       emit(GoTinyState.successful(result));
     } on ApiException catch (e) {
+      print(e.toString());
       emit(GoTinyState.failed(e.toString()));
-    } catch (_) {
+    } catch (e) {
+      print(e);
       emit(GoTinyState.failed('Unknown exception'));
     }
   }

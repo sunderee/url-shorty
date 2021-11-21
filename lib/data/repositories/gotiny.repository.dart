@@ -18,7 +18,8 @@ Future<GoTinyResponseModel> _shortenURLIsolate(
       HttpHeaders.contentTypeHeader: ContentType.json.toString(),
     },
   );
-  final response = json.decode(rawResponse) as JsonObject;
+  final response =
+      (json.decode(rawResponse) as List<dynamic>).first as JsonObject;
   return GoTinyResponseModel.fromJson(response);
 }
 

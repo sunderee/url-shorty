@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:urlshorty/data/models/gotiny_response.model.dart';
 import 'package:urlshorty/ui/themes/color.theme.dart';
+import 'package:urlshorty/utils/extensions/context.ext.dart';
 
 class DataContainerWidget extends StatefulWidget {
   final GoTinyResponseModel data;
@@ -58,9 +59,12 @@ class _DataContainerWidgetState extends State<DataContainerWidget> {
               'COPY TO CLIPBOARD',
               style: TextStyle(color: Colors.white),
             ),
-            onPressed: () => Clipboard.setData(
-              ClipboardData(text: widget.data.shortURL),
-            ),
+            onPressed: () {
+              Clipboard.setData(
+                ClipboardData(text: widget.data.shortURL),
+              );
+              context.displaySnackbar('URL copied to clipboard');
+            },
           ),
         ),
       ],
