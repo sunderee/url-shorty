@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _inputController = TextEditingController();
+  final TextEditingController _inputController = TextEditingController();
 
   @override
   void dispose() {
