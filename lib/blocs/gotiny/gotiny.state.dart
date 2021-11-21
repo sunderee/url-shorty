@@ -7,28 +7,28 @@ class GoTinyState extends Equatable {
   final GoTinyResponseModel? data;
   final String? errorMessage;
 
-  const GoTinyState({
+  const GoTinyState._({
     required this.status,
     this.data,
     this.errorMessage,
   });
 
-  factory GoTinyState.initial() => const GoTinyState(
+  factory GoTinyState.initial() => const GoTinyState._(
         status: StateStatus.initial,
         data: null,
         errorMessage: null,
       );
 
-  factory GoTinyState.loading() => const GoTinyState(
+  factory GoTinyState.loading() => const GoTinyState._(
         status: StateStatus.loading,
       );
 
-  factory GoTinyState.successful(GoTinyResponseModel data) => GoTinyState(
+  factory GoTinyState.successful(GoTinyResponseModel data) => GoTinyState._(
         status: StateStatus.successful,
         data: data,
       );
 
-  factory GoTinyState.failed(String errorMessage) => GoTinyState(
+  factory GoTinyState.failed(String errorMessage) => GoTinyState._(
         status: StateStatus.failed,
         errorMessage: errorMessage,
       );

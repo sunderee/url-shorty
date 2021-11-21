@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:urlshorty/app.router.dart';
 import 'package:urlshorty/blocs/gotiny/gotiny.cubit.dart';
 import 'package:urlshorty/blocs/gotiny/gotiny.state.dart';
 import 'package:urlshorty/blocs/status.enum.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // TODO: navigate to history screen
+              AppRouter.navigateToHistoryScreen(context);
             },
             icon: const Icon(Icons.history),
           ),

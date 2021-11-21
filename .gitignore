@@ -45,3 +45,6 @@ app.*.map.json
 
 # Lock file
 *.lock
+
+# Generated code
+*.g.dart
