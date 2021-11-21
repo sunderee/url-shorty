@@ -11,8 +11,15 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Architecture
+  flutter_bloc: ^8.0.0
+
   # Utilities
   qr_code_scanner: ^0.6.1
+
+  # Code quality
+  meta: ^1.7.0
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:
