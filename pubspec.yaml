@@ -1,7 +1,7 @@
 name: urlshorty
 description: URL shortening app which showcases clean architecture
 
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # Utilities
+  qr_code_scanner: ^0.6.1
 
 dev_dependencies:
   flutter_test:
