@@ -19,3 +19,7 @@ flutter packages pub run build_runner build
 # Run the app (have emulator ready)
 flutter run
 ```
+
+## License
+
+Open-sourced under MIT license.
